@@ -77,4 +77,36 @@ public class AccountServiceImp implements AccountService{
 		return userRepository.findByuserName(userName); 
 	}
 
+	@Override
+	public void deleteUser(Utilisateur utilisateur) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Utilisateur updateUser(String userName, String password, String confirmedPassword) {
+		Utilisateur user = loadUserByUsername( userName);
+		if(user != null )
+		{
+			if(!password.equals(confirmedPassword)) { throw new RuntimeException("Your password doesn't match the password confirmation");}
+			else {
+				Utilisateur userTosave = userRepository.findByuserName(userName);
+				
+				userTosave.setuserName(userName);
+				userTosave.setPassword(bCryptPasswordEncoder.encode(password));
+				userRepository.save(userTosave);
+				
+			}
+			 
+		}
+		else
+		{
+			throw new RuntimeException("User  do not exist  ");
+		}
+		
+		
+		
+		return null;
+	}
+
 }

@@ -24,8 +24,8 @@ public class BasmaOnlineStoreApplication {
 		return args->{
 			accountService.save(new Role("USER"));
 			accountService.save(new Role("ADMIN"));
-			Stream.of("user1","user2","user3","admin").forEach(un->{
-				accountService.saveUser(un, "1234", "1234");
+			Stream.of("utilisateur1.0","utilisateur2.0","utilisateur3.0","admin").forEach(un->{
+				accountService.saveUser(un, "ABCD", "ABCD");
 			});
 			accountService.addRoleToUser("admin", "ADMIN");
 		};
